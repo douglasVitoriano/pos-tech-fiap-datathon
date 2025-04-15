@@ -12,7 +12,7 @@ class DataProcessor:
         self.df.reset_index(inplace=True)
         return self
     
-    def rename_column(self, old_name, new_name):
+    def rename_column(self, columns_map):
         """
         Renomeia uma coluna no DataFrame armazenado em self.df.
 
@@ -23,7 +23,7 @@ class DataProcessor:
         Retorna:
         - DataFrame com a coluna renomeada
         """
-        self.df.rename(columns={old_name: new_name}, inplace=True)
+        self.df.rename(columns=columns_map, inplace=True)
         return self
     
     def json_normalize(self, columns):
@@ -38,7 +38,7 @@ class DataProcessor:
         """
         # Para cada coluna a ser normalizada
         for column in columns:
-            normalized_df = pd.json_normalize(self.df[column])
+            normalized_df = pd.json_normalize(self.df[column].tolist())
             # Junta o DataFrame normalizado com o original
             self.df = pd.concat([self.df.drop(columns=[column]), normalized_df], axis=1)
         return self

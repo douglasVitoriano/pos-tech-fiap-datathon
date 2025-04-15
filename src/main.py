@@ -44,8 +44,8 @@ def processing_data(df_applicants_raw, df_prospects_raw, df_vagas_raw,ingestor):
         df_vagas_processed = (
             vagas_processor
             .reset_index()
-            .rename_column("index", "codigo_candidato")
-            .json_normalize(["perfil_vaga", "beneficios"])
+            .rename_column({"index": "vaga_id"})
+            .json_normalize(["informacoes_basicas", "perfil_vaga", "beneficios"])
             .drop_columns(['informacoes_basicas', 'perfil_vaga', 'beneficios'])
             .get_df()
         )
@@ -53,21 +53,21 @@ def processing_data(df_applicants_raw, df_prospects_raw, df_vagas_raw,ingestor):
     except Exception as e:
         print(f"Erro durante o processamento dos dados: {e}")
 
-    #Prospects
-    try:
-        prospects_processor = DataProcessor(df_prospects_raw)
-        df_prospects_processed = (
-            prospects_processor
-            .reset_index()
-            .explode_column("prospects")
-            .drop_columns(["0"])
+    # #Prospects
+    # try:
+    #     prospects_processor = DataProcessor(df_prospects_raw)
+    #     df_prospects_processed = (
+    #         prospects_processor
+    #         .reset_index()
+    #         .explode_column("prospects")
+    #         .drop_columns(["0"])
 
-        )
-        print(df_prospects_processed)
+    #     )
+    #     print(df_prospects_processed)
 
-        ingestor.save_to_parquet(df_prospects_processed, "dados/trusted/prospects.parquet")
-    except Exception as e:
-        print(f"Erro durante o processamento dos dados: {e}")
+    #     ingestor.save_to_parquet(df_prospects_processed, "dados/trusted/prospects.parquet")
+    # except Exception as e:
+    #     print(f"Erro durante o processamento dos dados: {e}")
 def main():
    
     df_applicants_raw, df_prospects_raw, df_vagas_raw, ingestor = load_data()
