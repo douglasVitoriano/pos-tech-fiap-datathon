@@ -28,20 +28,24 @@ class DataProcessor:
     
     def json_normalize(self, columns):
         """
-        Normaliza várias colunas de uma vez, preservando o DataFrame original.
-    
+            Normaliza várias colunas JSON de um DataFrame.
+
         Parâmetros:
-        - columns (list): lista de nomes de colunas a serem normalizadas.
-    
+            - columns (list): lista de nomes de colunas a serem normalizadas.
+
         Retorna:
-        - self (para permitir encadeamento de métodos)
+            - self
         """
-        # Para cada coluna a ser normalizada
         for column in columns:
-            normalized_df = pd.json_normalize(self.df[column].tolist())
-            # Junta o DataFrame normalizado com o original
-            self.df = pd.concat([self.df.drop(columns=[column]), normalized_df], axis=1)
+            if column in self.df.columns:
+                # Converte cada linha da coluna em dict (ou None)
+                data_to_normalize = self.df[column].apply(lambda x: x if isinstance(x, dict) else {})
+                # Normaliza 
+                normalized_df = pd.json_normalize(data_to_normalize)
+                # Concatena mantendo o index
+                self.df = pd.concat([self.df, normalized_df], axis=1)
         return self
+
 
     
     def explode_column(self, column):
@@ -114,6 +118,10 @@ class DataProcessor:
     def group_and_aggregate(self, group_cols, agg_dict):
         self.df = self.df.groupby(group_cols).agg(agg_dict).reset_index()
         return self
+    
+    def get_columns(self):
+        return self.df.columns.tolist()
 
     def get_df(self):
         return self.df
+    

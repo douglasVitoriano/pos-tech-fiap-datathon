@@ -7,9 +7,9 @@ def load_data():
         #========================== Ingestão===============================================
         ingestor = DataIngestor()
 
-        df_applicants_raw = ingestor.read_json("dados/raw/applicants.json")
-        df_prospects_raw = ingestor.read_json("dados/raw/prospects.json")
-        df_vagas_raw = ingestor.read_json("dados/raw/vagas.json")
+        df_applicants_raw = ingestor.read_json("dados/raw/applicants.json").T
+        df_prospects_raw = ingestor.read_json("dados/raw/prospects.json").T
+        df_vagas_raw = ingestor.read_json("dados/raw/vagas.json").T
 
         #========================= Validação Schema==========================================
 
@@ -45,7 +45,7 @@ def processing_data(df_applicants_raw, df_prospects_raw, df_vagas_raw,ingestor):
             vagas_processor
             .reset_index()
             .rename_column({"index": "vaga_id"})
-            .json_normalize(["informacoes_basicas", "perfil_vaga", "beneficios"])
+            .json_normalize(['informacoes_basicas', 'perfil_vaga', 'beneficios'])
             .drop_columns(['informacoes_basicas', 'perfil_vaga', 'beneficios'])
             .get_df()
         )
