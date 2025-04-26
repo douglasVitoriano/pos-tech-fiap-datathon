@@ -78,13 +78,13 @@ def processing_data(df_applicants_raw, df_prospects_raw, df_vagas_raw,ingestor):
         df_applicants_processed = (
             applicants_processor
             .reset_index()
-            .rename_column({"index": "codigo_candidato"})
+            .rename_column({"index": "codigo_candidato", "cargo_atual": "cargo_atual_old"})
             .json_normalize(["infos_basicas", "informacoes_pessoais", "informacoes_profissionais", "formacao_e_idiomas",
-                        "cargo_atual"])
+                        "cargo_atual_old"])
             .drop_columns(["telefone_recado", "infos_basicas", "estado_civil", "skype", "facebook","download_cv", 
                         "email_secundario", "informacoes_profissionais", "informacoes_pessoais", "outro_curso", "formacao_e_idiomas", "cv_en",
-                        "email_corporativo", "unidade", "id_ibrati", 'email_superior_imediato', 'nome_superior_imediato'])
-            .drop_duplicate_columns()#colunas duplicadas: nome, email, cargo_atual
+                        "email_corporativo", "unidade", "id_ibrati", 'email_superior_imediato', 'nome_superior_imediato', "cargo_atual_old"])
+            .drop_duplicate_columns()#colunas duplicadas: nome, email
             .get_df()
 
         )
