@@ -84,6 +84,7 @@ def processing_data(df_applicants_raw, df_prospects_raw, df_vagas_raw,ingestor):
             .drop_columns(["telefone_recado", "infos_basicas", "estado_civil", "skype", "facebook","download_cv", 
                         "email_secundario", "informacoes_profissionais", "informacoes_pessoais", "outro_curso", "formacao_e_idiomas", "cv_en",
                         "email_corporativo", "unidade", "id_ibrati", 'email_superior_imediato', 'nome_superior_imediato'])
+            .drop_duplicate_columns()#colunas duplicadas: nome, email, cargo_atual
             .get_df()
 
         )
