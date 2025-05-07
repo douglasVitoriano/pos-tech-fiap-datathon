@@ -1,2 +1,5 @@
 pandas==2.2.3
 seaborn==0.13.2
+boto3==1.37
+pyarrow==19.0.1
+s3fs==2025.3.2
