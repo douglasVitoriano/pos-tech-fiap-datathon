@@ -1,4 +1,5 @@
 import pandas as pd
+import os
 
 class DataIngestor:
     def __init__(self):
@@ -20,6 +21,20 @@ class DataIngestor:
             df = df[columns]
 
         return df
+    
+    def read_parquet(self, filename):
+        """
+        Lê um arquivo Parquet específico de um diretório local e retorna um DataFrame.
+        """
+        # Cria o caminho completo para o arquivo
+        file_path = os.path.join(self.directory, filename)
+        
+        # Verifica se o arquivo existe
+        if os.path.exists(file_path) and file_path.endswith('.parquet'):
+            # Lê o arquivo Parquet
+            return pd.read_parquet(file_path)
+        else:
+            raise FileNotFoundError(f"O arquivo {filename} não foi encontrado no diretório {self.directory} ou não é um arquivo Parquet válido.")
     
     def validate_schema(self, df, expected_schema):
         """
