@@ -1,8 +1,7 @@
 import pandas as pd
 import boto3
 import json
-import s3fs
-import pyarrow
+import io
 
 class DataIngestor:
     def __init__(self, bucket_name):
@@ -17,6 +16,17 @@ class DataIngestor:
         content = response['Body'].read().decode('utf-8')
         data = json.loads(content)
         return pd.DataFrame(data)
+    
+    def read_parquet(self, s3_key):
+        """
+        Lê um arquivo Parquet do S3 e retorna um DataFrame.
+        """
+        response = self.s3_client.get_object(Bucket=self.bucket, Key=s3_key)
+        # Obtém o conteúdo do arquivo
+        content = response['Body'].read()
+        
+        # Lê o conteúdo Parquet diretamente de bytes usando pandas
+        return pd.read_parquet(io.BytesIO(content))
     
     def validate_schema(self, df, expected_schema):
         """
