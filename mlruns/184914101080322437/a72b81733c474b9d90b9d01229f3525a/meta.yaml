@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/douglas.vitoriano/Documents/pessoal/pos_fiap/pos-tech-fiap-datathon/mlruns/184914101080322437/a72b81733c474b9d90b9d01229f3525a/artifacts
+end_time: 1747877728924
+entry_point_name: ''
+experiment_id: '184914101080322437'
+lifecycle_stage: active
+run_id: a72b81733c474b9d90b9d01229f3525a
+run_name: run_20250521_223502
+run_uuid: a72b81733c474b9d90b9d01229f3525a
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1747877703165
+status: 3
+tags: []
+user_id: douglas.vitoriano

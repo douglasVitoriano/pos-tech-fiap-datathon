@@ -1,0 +1,14 @@
+aliases: []
+creation_timestamp: 1747877728638
+current_stage: None
+description: null
+last_updated_timestamp: 1747877728638
+name: JobMatchingModel
+run_id: a72b81733c474b9d90b9d01229f3525a
+run_link: null
+source: file:///C:/Users/douglas.vitoriano/Documents/pessoal/pos_fiap/pos-tech-fiap-datathon/mlruns/184914101080322437/a72b81733c474b9d90b9d01229f3525a/artifacts/model
+status: READY
+status_message: null
+storage_location: file:///C:/Users/douglas.vitoriano/Documents/pessoal/pos_fiap/pos-tech-fiap-datathon/mlruns/184914101080322437/a72b81733c474b9d90b9d01229f3525a/artifacts/model
+user_id: null
+version: 3

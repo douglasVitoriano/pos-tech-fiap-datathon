@@ -1,11 +1,18 @@
-FROM python:3.13-slim
+# Imagem base
+FROM python:3.10-slim
 
-WORKDIR /app
+# Define diretório de trabalho
+WORKDIR /src
 
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+# Copia arquivos para o container
+COPY . .
 
-COPY src/ src/
-COPY dados/ dados/
+# Instala dependências
+RUN pip install --no-cache-dir --upgrade pip \
+ && pip install --no-cache-dir -r requirements.txt
 
-CMD ["python", "src/main.py"]
+# Expondo porta padrão FastAPI
+EXPOSE 8000
+
+# Comando para iniciar a API
+CMD ["uvicorn", "src.api_ml_job_matching:app", "--host", "0.0.0.0", "--port", "8000"]

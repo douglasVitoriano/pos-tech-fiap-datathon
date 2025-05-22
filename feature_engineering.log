@@ -1,0 +1,19 @@
+INFO:root:Iniciando feature engineering
+INFO:root:Features geradas com sucesso.
+INFO:root:Iniciando feature engineering
+INFO:root:Iniciando feature engineering
+INFO:root:Iniciando feature engineering
+INFO:root:Features geradas com sucesso.
+INFO:root:Iniciando feature engineering
+INFO:root:Features geradas com sucesso.
+INFO:root:Iniciando feature engineering
+INFO:root:Features geradas com sucesso.
+INFO:root:Iniciando feature engineering
+INFO:root:Features geradas com sucesso.
+INFO:root:Iniciando feature engineering
+ERROR:root:Erro ao gerar features
+Traceback (most recent call last):
+  File "C:\Users\douglas.vitoriano\Documents\pessoal\pos_fiap\pos-tech-fiap-datathon\src\feature_engineering.py", line 190, in generate_features
+    features['tfidf_similarity'] = self._calculate_similarity_pairs(
+AttributeError: 'FeatureEngineeringPipeline' object has no attribute '_calculate_similarity_pairs'
+INFO:root:Iniciando feature engineering

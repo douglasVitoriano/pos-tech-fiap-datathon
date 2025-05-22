@@ -1,0 +1,41 @@
+artifact_path: model
+flavors:
+  python_function:
+    data: model.xgb
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.xgboost
+    python_version: 3.10.6
+  xgboost:
+    code: null
+    data: model.xgb
+    model_class: xgboost.sklearn.XGBClassifier
+    model_format: xgb
+    xgb_version: 3.0.0
+is_signature_from_type_hint: false
+mlflow_version: 2.22.0
+model_size_bytes: 154871
+model_uuid: e60201ca3943423f9463502c416e2c57
+prompts: null
+run_id: 4a50718c855f414d9c8e254cc4a5c51b
+saved_input_example_info:
+  artifact_path: input_example.json
+  pandas_orient: split
+  serving_input_path: serving_input_example.json
+  type: dataframe
+signature:
+  inputs: '[{"type": "double", "name": "skills_similarity", "required": true}, {"type":
+    "long", "name": "area_match", "required": true}, {"type": "double", "name": "tfidf_similarity",
+    "required": true}, {"type": "long", "name": "n_cv_skills", "required": true},
+    {"type": "long", "name": "n_job_skills", "required": true}, {"type": "double",
+    "name": "skills_coverage_ratio", "required": true}, {"type": "long", "name": "keyword_overlap",
+    "required": true}, {"type": "boolean", "name": "senioridade_junior", "required":
+    true}, {"type": "boolean", "name": "senioridade_nao_definido", "required": true},
+    {"type": "boolean", "name": "senioridade_pleno", "required": true}, {"type": "boolean",
+    "name": "senioridade_senior", "required": true}, {"type": "float", "name": "composite_score",
+    "required": true}]'
+  outputs: '[{"type": "tensor", "tensor-spec": {"dtype": "int64", "shape": [-1]}}]'
+  params: null
+type_hint_from_example: false
+utc_time_created: '2025-05-21 04:04:33.194939'
